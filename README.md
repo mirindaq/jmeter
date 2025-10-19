@@ -136,8 +136,8 @@ GET    /api/test/memory-test         - Memory test
 - **Tests:** Random endpoints with uniform timer
 
 ### **04-Stress-Test.jmx** 💪 (Find Breaking Point)
-- **Users:** 50 | **Ramp-up:** 60s | **Duration:** 5 min | **Use:** Capacity planning
-- **Purpose:** Find system limits and bottlenecks
+- **Users:** 200 | **Ramp-up:** 20s | **Duration:** 5 min | **Use:** Capacity planning
+- **Purpose:** Find system limits and bottlenecks (WILL BREAK with resource limits!)
 - **Tests:** Continuous load with random endpoints
 
 ### **05-Functional-API-Test.jmx** ✅ (CRUD Testing)
@@ -149,6 +149,7 @@ GET    /api/test/memory-test         - Memory test
 - **Quick Start:** [QUICK-START.md](QUICK-START.md) - Bắt đầu nhanh trong 5 phút
 - **Test Details:** [jmeter-tests/README-TESTS.md](jmeter-tests/README-TESTS.md) - Chi tiết từng test
 - **MySQL Setup:** [MYSQL_SETUP.md](MYSQL_SETUP.md) - Cấu hình database
+- **Resource Limits:** [RESOURCE-LIMITS.md](RESOURCE-LIMITS.md) - ⭐ Giới hạn resources để test breaking point
 
 ## 🚀 Chạy JMeter Tests
 

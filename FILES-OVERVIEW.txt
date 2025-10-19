@@ -28,6 +28,11 @@
    → Hướng dẫn đọc docs
    → Quick reference
 
+📄 RESOURCE-LIMITS.md           ⭐ GIỚI HẠN RESOURCES
+   → Cấu hình limits để test breaking point
+   → Adjust threads & connections
+   → Breaking point prediction
+
 📄 FILES-OVERVIEW.txt           📝 FILE NÀY
    → Tóm tắt tất cả files
 
@@ -106,11 +111,12 @@
    📊 TÓM TẮT
 ═══════════════════════════════════════════════════════════════
 
-✅ Total Documentation Files: 4 files (.md)
+✅ Total Documentation Files: 5 files (.md)
    - README.md
    - QUICK-START.md
    - MYSQL_SETUP.md
    - STRUCTURE.md
+   - RESOURCE-LIMITS.md ⭐ NEW!
 
 ✅ Total Test Plans: 5 files (.jmx)
    - 01-Smoke-Test.jmx

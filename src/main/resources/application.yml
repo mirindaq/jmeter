@@ -2,6 +2,13 @@ server:
   port: 8080
   servlet:
     context-path: /api
+  tomcat:
+    threads:
+      max: 20                    # Giới hạn max threads (default: 200)
+      min-spare: 5               # Minimum idle threads
+    max-connections: 100         # Max connections (default: 8192)
+    accept-count: 10             # Queue size when full (default: 100)
+    connection-timeout: 20000    # Connection timeout 20s
 
 spring:
   application:
@@ -12,6 +19,13 @@ spring:
     username: root
     password: viethoang123
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10      # Max DB connections (default: 10)
+      minimum-idle: 2            # Min idle connections
+      connection-timeout: 30000  # Wait for connection 30s
+      idle-timeout: 600000       # Idle timeout 10 min
+      max-lifetime: 1800000      # Max lifetime 30 min
+      leak-detection-threshold: 60000  # Detect leaks after 60s
 
   jpa:
     hibernate:
@@ -21,7 +35,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         enable_lazy_load_no_trans: true
-  
+
   security:
     user:
       name: admin

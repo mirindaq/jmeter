@@ -84,8 +84,8 @@
 ### ✅ **04-Stress-Test.jmx**
 **Mục đích:** Find breaking point  
 **Cấu hình:**
-- **Users:** 50
-- **Ramp-up:** 60 giây
+- **Users:** 200 ⚠️ (INCREASED - Will break!)
+- **Ramp-up:** 20 giây ⚠️ (Fast ramp-up!)
 - **Duration:** 5 phút (300 seconds)
 - **Loops:** Infinite (-1)
 
