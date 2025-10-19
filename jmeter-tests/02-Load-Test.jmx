@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.2">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Basic Load Test" enabled="true">
-      <stringProp name="TestPlan.comments">Basic load test for Spring Boot application</stringProp>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="02 - Load Test (Normal Load)" enabled="true">
+      <stringProp name="TestPlan.comments">Load Test - Simulate normal expected load with 10 concurrent users</stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
@@ -18,7 +18,7 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Load Test - 10 Users, 10 Loops" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControllerGui" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -30,6 +30,7 @@
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="TestPlan.comments">10 users ramped up over 30 seconds, each doing 10 loops</stringProp>
       </ThreadGroup>
       <hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Health Check" enabled="true">
@@ -107,8 +108,8 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{
-  "username": "testuser${__Random(1,1000)}",
-  "email": "test${__Random(1,1000)}@example.com",
+  "username": "testuser${__Random(1,10000)}",
+  "email": "test${__Random(1,10000)}@example.com",
   "password": "password123",
   "firstName": "Test",
   "lastName": "User",
@@ -131,10 +132,6 @@
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.impersonate_user_agent">false</stringProp>
-          <stringProp name="HTTPSampler.user_agent"></stringProp>
-          <stringProp name="HTTPSampler.impersonate_user_agent">false</stringProp>
-          <stringProp name="HTTPSampler.user_agent"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -154,7 +151,7 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{
-  "name": "Test Product ${__Random(1,1000)}",
+  "name": "Test Product ${__Random(1,10000)}",
   "description": "Test product description",
   "price": ${__Random(10,1000)},
   "stockQuantity": ${__Random(1,100)},
@@ -177,10 +174,6 @@
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.impersonate_user_agent">false</stringProp>
-          <stringProp name="HTTPSampler.user_agent"></stringProp>
-          <stringProp name="HTTPSampler.impersonate_user_agent">false</stringProp>
-          <stringProp name="HTTPSampler.user_agent"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -193,7 +186,7 @@
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Think Time - 1 second" enabled="true">
           <stringProp name="ConstantTimer.delay">1000</stringProp>
         </ConstantTimer>
         <hashTree/>

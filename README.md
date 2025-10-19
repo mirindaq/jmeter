@@ -18,9 +18,9 @@
 - **Indexes**: Optimized indexes cho performance
 
 ### Security
-- **Spring Security**: Basic authentication
-- **CORS**: Cross-origin resource sharing
-- **JWT**: Mock JWT token implementation
+- **Spring Security**: Disabled cho performance testing
+- **CORS**: Enabled cho cross-origin requests
+- **No Authentication**: Focus vào performance testing
 
 ## 📋 Yêu cầu hệ thống
 
@@ -96,13 +96,11 @@ GET    /api/orders/user/{userId}     - Lấy orders theo user
 GET    /api/orders/status/{status}   - Lấy orders theo status
 ```
 
-### Authentication APIs
+### Authentication APIs (Simple - No JWT)
 ```
-POST   /api/auth/login               - Đăng nhập
-POST   /api/auth/register            - Đăng ký
+POST   /api/auth/login               - Đăng nhập (trả về user info)
+POST   /api/auth/register            - Đăng ký user mới
 POST   /api/auth/logout              - Đăng xuất
-GET    /api/auth/validate            - Validate token
-GET    /api/auth/profile             - Lấy thông tin profile
 ```
 
 ### Test APIs
@@ -120,22 +118,37 @@ GET    /api/test/load-test           - Load test
 GET    /api/test/memory-test         - Memory test
 ```
 
-## 🧪 JMeter Test Plans
+## 🧪 JMeter Test Plans (5 Test Types)
 
-### 1. Basic Load Test (`Basic-Load-Test.jmx`)
-- **Mục đích**: Test cơ bản với 10 threads, 10 loops
-- **Thời gian**: 30 giây ramp-up
-- **Test cases**: Health check, Get users, Get products, Create user, Create product
+### **01-Smoke-Test.jmx** ⚡ (Quick Sanity Check)
+- **Users:** 1 | **Duration:** ~30s | **Use:** After deployment
+- **Purpose:** Verify basic functionality works
+- **Tests:** Health check, Get users/products, Create product, Login
 
-### 2. Stress Test (`Stress-Test.jmx`)
-- **Mục đích**: Stress testing với 50 threads
-- **Thời gian**: 5 phút duration, 60 giây ramp-up
-- **Test cases**: Random selection từ các endpoints
+### **02-Load-Test.jmx** 📊 (Normal Load)
+- **Users:** 10 | **Ramp-up:** 30s | **Loops:** 10 | **Use:** Daily baseline
+- **Purpose:** Test with expected normal load
+- **Tests:** Health check, CRUD operations with think time
 
-### 3. API Test Suite (`API-Test-Suite.jmx`)
-- **Mục đích**: Comprehensive API testing
-- **Thread Groups**: User API Tests, Product API Tests
-- **Test cases**: Full CRUD operations với data correlation
+### **03-Spike-Test.jmx** 🚀 (Sudden Load Spike)
+- **Users:** 100 | **Ramp-up:** 10s | **Duration:** 60s | **Use:** Flash sales
+- **Purpose:** Simulate sudden traffic surge
+- **Tests:** Random endpoints with uniform timer
+
+### **04-Stress-Test.jmx** 💪 (Find Breaking Point)
+- **Users:** 50 | **Ramp-up:** 60s | **Duration:** 5 min | **Use:** Capacity planning
+- **Purpose:** Find system limits and bottlenecks
+- **Tests:** Continuous load with random endpoints
+
+### **05-Functional-API-Test.jmx** ✅ (CRUD Testing)
+- **Users:** 3x2 Thread Groups | **Loops:** 3 | **Use:** CI/CD automation
+- **Purpose:** Validate API correctness
+- **Tests:** Full CRUD operations with data correlation
+
+### **📖 Chi tiết:** 
+- **Quick Start:** [QUICK-START.md](QUICK-START.md) - Bắt đầu nhanh trong 5 phút
+- **Test Details:** [jmeter-tests/README-TESTS.md](jmeter-tests/README-TESTS.md) - Chi tiết từng test
+- **MySQL Setup:** [MYSQL_SETUP.md](MYSQL_SETUP.md) - Cấu hình database
 
 ## 🚀 Chạy JMeter Tests
 
@@ -155,9 +168,25 @@ jmeter.sh
 - Click nút "Start" (▶️)
 - Xem kết quả trong "Summary Report" và "Graph Results"
 
-### 4. Chạy từ command line
+### 4. Chạy từ command line (Non-GUI Mode - Recommended)
 ```bash
-jmeter -n -t jmeter-tests/Basic-Load-Test.jmx -l results.jtl
+# Smoke Test (Quick check)
+jmeter -n -t jmeter-tests/01-Smoke-Test.jmx -l results/smoke.jtl
+
+# Load Test (Normal load)
+jmeter -n -t jmeter-tests/02-Load-Test.jmx -l results/load.jtl
+
+# Spike Test (Flash sale)
+jmeter -n -t jmeter-tests/03-Spike-Test.jmx -l results/spike.jtl
+
+# Stress Test (Breaking point)
+jmeter -n -t jmeter-tests/04-Stress-Test.jmx -l results/stress.jtl
+
+# Functional Test (CRUD)
+jmeter -n -t jmeter-tests/05-Functional-API-Test.jmx -l results/functional.jtl
+
+# Generate HTML Report
+jmeter -g results/load.jtl -o reports/load-test-report/
 ```
 
 ## 📈 Monitoring và Metrics

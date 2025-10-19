@@ -37,7 +37,7 @@ public class AuthController {
             response.put("success", true);
             response.put("message", "Login successful");
             response.put("user", user.get());
-            response.put("token", "mock-jwt-token-" + System.currentTimeMillis());
+            response.put("userId", user.get().getId());
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             response.put("success", false);
@@ -76,57 +76,10 @@ public class AuthController {
     }
     
     @PostMapping("/logout")
-    public ResponseEntity<Map<String, Object>> logout(@RequestHeader(value = "Authorization", required = false) String token) {
+    public ResponseEntity<Map<String, Object>> logout() {
         Map<String, Object> response = new HashMap<>();
         response.put("success", true);
         response.put("message", "Logout successful");
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-    
-    @GetMapping("/validate")
-    public ResponseEntity<Map<String, Object>> validateToken(@RequestHeader(value = "Authorization", required = false) String token) {
-        Map<String, Object> response = new HashMap<>();
-        
-        if (token == null || !token.startsWith("Bearer ")) {
-            response.put("valid", false);
-            response.put("message", "Invalid token format");
-            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
-        }
-        
-        // Mock token validation
-        String actualToken = token.substring(7);
-        if (actualToken.startsWith("mock-jwt-token-")) {
-            response.put("valid", true);
-            response.put("message", "Token is valid");
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } else {
-            response.put("valid", false);
-            response.put("message", "Invalid token");
-            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
-        }
-    }
-    
-    @GetMapping("/profile")
-    public ResponseEntity<Map<String, Object>> getProfile(@RequestHeader(value = "Authorization", required = false) String token) {
-        Map<String, Object> response = new HashMap<>();
-        
-        if (token == null || !token.startsWith("Bearer ")) {
-            response.put("success", false);
-            response.put("message", "Authorization token required");
-            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
-        }
-        
-        // Mock user profile
-        Map<String, Object> profile = new HashMap<>();
-        profile.put("id", 1L);
-        profile.put("username", "testuser");
-        profile.put("email", "test@example.com");
-        profile.put("firstName", "Test");
-        profile.put("lastName", "User");
-        profile.put("role", "USER");
-        
-        response.put("success", true);
-        response.put("profile", profile);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

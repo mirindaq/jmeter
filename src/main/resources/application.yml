@@ -38,11 +38,7 @@ management:
 
 logging:
   level:
-    com.example: DEBUG
-    org.springframework.security: DEBUG
+    com.example: INFO
+    org.springframework.security: INFO
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-
-jwt:
-  secret: mySecretKey123456789012345678901234567890
-  expiration: 86400000 # 24 hours

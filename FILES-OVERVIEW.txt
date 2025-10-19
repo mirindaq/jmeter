@@ -1,0 +1,129 @@
+═══════════════════════════════════════════════════════════════
+   📚 JMETER TEST APPLICATION - FILES OVERVIEW
+═══════════════════════════════════════════════════════════════
+
+📁 ROOT DIRECTORY (D:\Project\jmeter)
+────────────────────────────────────────────────────────────
+
+📄 README.md                    ⭐ FILE CHÍNH - ĐỌC ĐẦU TIÊN
+   → Tổng quan project
+   → API endpoints đầy đủ
+   → Danh sách test plans
+   → Configuration & troubleshooting
+
+📄 QUICK-START.md               ⚡ HƯỚNG DẪN NHANH
+   → 3 bước để bắt đầu (5 phút)
+   → Commands để chạy tests
+   → Test scenarios
+   → Success criteria
+
+📄 MYSQL_SETUP.md               🗄️ DATABASE SETUP
+   → Cài đặt MySQL
+   → Configuration
+   → Performance tuning
+   → Troubleshooting
+
+📄 STRUCTURE.md                 📋 CẤU TRÚC PROJECT
+   → Cấu trúc thư mục
+   → Hướng dẫn đọc docs
+   → Quick reference
+
+📄 FILES-OVERVIEW.txt           📝 FILE NÀY
+   → Tóm tắt tất cả files
+
+────────────────────────────────────────────────────────────
+
+📁 jmeter-tests/                🧪 TEST PLANS
+────────────────────────────────────────────────────────────
+
+📄 01-Smoke-Test.jmx            ⚡ Quick Check (30s)
+   → 1 user, 1 loop
+   → Verify basic functionality
+   → Run after every deployment
+
+📄 02-Load-Test.jmx             📊 Normal Load (5 min)
+   → 10 users, 10 loops
+   → Normal daily traffic
+   → Baseline performance
+
+📄 03-Spike-Test.jmx            🚀 Sudden Spike (1 min)
+   → 100 users in 10s
+   → Flash sale simulation
+   → Surge readiness
+
+📄 04-Stress-Test.jmx           💪 Breaking Point (5 min)
+   → 50 users, 5 minutes
+   → Find system limits
+   → Capacity planning
+
+📄 05-Functional-API-Test.jmx   ✅ CRUD Testing (3 min)
+   → 3x2 Thread Groups
+   → Full CRUD operations
+   → CI/CD automation
+
+📄 README-TESTS.md              📖 TEST DOCUMENTATION
+   → Chi tiết từng test plan
+   → Configuration options
+   → Success criteria
+   → Best practices
+
+────────────────────────────────────────────────────────────
+
+📁 src/                         💻 SOURCE CODE
+────────────────────────────────────────────────────────────
+
+📁 src/main/java/com/example/jmetertestapp/
+   ├── config/                  # Configuration
+   ├── controller/              # REST APIs
+   ├── dto/                     # Data Transfer Objects
+   ├── model/                   # Entities (User, Product, Order)
+   ├── repository/              # JPA Repositories
+   ├── service/                 # Business logic
+   └── JmeterTestAppApplication.java
+
+📁 src/main/resources/
+   └── application.yml          # MySQL config
+
+────────────────────────────────────────────────────────────
+
+📁 database/                    🗄️ DATABASE
+────────────────────────────────────────────────────────────
+
+📄 setup.sql                    # MySQL setup script
+
+────────────────────────────────────────────────────────────
+
+═══════════════════════════════════════════════════════════════
+   🎯 QUICK START
+═══════════════════════════════════════════════════════════════
+
+1️⃣  ĐỌC README.md              (5 phút)
+2️⃣  SETUP MySQL                 (xem MYSQL_SETUP.md)
+3️⃣  CHẠY APP                    mvn spring-boot:run
+4️⃣  CHẠY TEST                   (xem QUICK-START.md)
+
+═══════════════════════════════════════════════════════════════
+   📊 TÓM TẮT
+═══════════════════════════════════════════════════════════════
+
+✅ Total Documentation Files: 4 files (.md)
+   - README.md
+   - QUICK-START.md
+   - MYSQL_SETUP.md
+   - STRUCTURE.md
+
+✅ Total Test Plans: 5 files (.jmx)
+   - 01-Smoke-Test.jmx
+   - 02-Load-Test.jmx
+   - 03-Spike-Test.jmx
+   - 04-Stress-Test.jmx
+   - 05-Functional-API-Test.jmx
+
+✅ Test Documentation: 1 file
+   - jmeter-tests/README-TESTS.md
+
+═══════════════════════════════════════════════════════════════
+
+🎉 ĐƠN GIẢN, RÕ RÀNG, ĐỦ DÙNG!
+
+═══════════════════════════════════════════════════════════════
