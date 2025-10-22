@@ -4,10 +4,10 @@ server:
     context-path: /api
   tomcat:
     threads:
-      max: 20                    # Giới hạn max threads (default: 200)
-      min-spare: 5               # Minimum idle threads
-    max-connections: 100         # Max connections (default: 8192)
-    accept-count: 10             # Queue size when full (default: 100)
+      max: 10                    # Giới hạn max threads (default: 200)
+      min-spare: 2               # Minimum idle threads
+    max-connections: 20         # Max connections (default: 8192)
+    accept-count: 5             # Queue size when full (default: 100)
     connection-timeout: 20000    # Connection timeout 20s
 
 spring:

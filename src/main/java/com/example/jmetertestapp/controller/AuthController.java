@@ -1,6 +1,7 @@
 package com.example.jmetertestapp.controller;
 
 import com.example.jmetertestapp.dto.UserDTO;
+import com.example.jmetertestapp.model.User;
 import com.example.jmetertestapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class AuthController {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         
-        Optional<UserDTO> user = userService.getUserByUsername(username);
+        Optional<User> user = userService.getUserByUsername(username);
         if (user.isPresent() && user.get().getPassword().equals(password)) {
             response.put("success", true);
             response.put("message", "Login successful");

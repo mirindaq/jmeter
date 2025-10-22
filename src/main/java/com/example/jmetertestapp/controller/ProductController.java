@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/products")
@@ -36,7 +37,7 @@ public class ProductController {
     }
     
     @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+    public ResponseEntity<List<ProductDTO>> getAllProducts() throws InterruptedException {
         List<ProductDTO> products = productService.getAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }

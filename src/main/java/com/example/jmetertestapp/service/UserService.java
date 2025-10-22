@@ -31,7 +31,11 @@ public class UserService {
                 .map(this::convertToDTO);
     }
     
-    public Optional<UserDTO> getUserByUsername(String username) {
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public Optional<UserDTO> getUserDTOByUsername(String username) {
         return userRepository.findByUsername(username)
                 .map(this::convertToDTO);
     }
